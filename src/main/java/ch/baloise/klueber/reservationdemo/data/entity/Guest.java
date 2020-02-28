@@ -1,10 +1,13 @@
 package ch.baloise.klueber.reservationdemo.data.entity;
 
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "GUEST")
+@ApiModel(description = "details about a guest")
 public class Guest {
     @Id
     @Column(name = "GUEST_ID")

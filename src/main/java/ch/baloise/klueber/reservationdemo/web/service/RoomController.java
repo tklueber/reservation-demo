@@ -1,4 +1,4 @@
-package ch.baloise.klueber.reservationdemo.webservice;
+package ch.baloise.klueber.reservationdemo.web.service;
 
 import ch.baloise.klueber.reservationdemo.data.entity.Room;
 import ch.baloise.klueber.reservationdemo.data.repository.RoomRepository;

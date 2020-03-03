@@ -19,7 +19,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("ch.baloise.klueber.reservationdemo.webservice"))
+                .apis(RequestHandlerSelectors.basePackage("ch.baloise.klueber.reservationdemo"))
                 .paths(PathSelectors.any())
                 .build().apiInfo(this.apiInfo());
     }

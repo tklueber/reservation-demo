@@ -9,6 +9,9 @@ import ch.baloise.klueber.reservationdemo.data.repository.ReservationRepository;
 import ch.baloise.klueber.reservationdemo.data.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -18,10 +21,17 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
 
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+
     public ReservationService(GuestRepository guestRepository, ReservationRepository reservationRepository, RoomRepository roomRepository) {
         this.guestRepository = guestRepository;
         this.reservationRepository = reservationRepository;
         this.roomRepository = roomRepository;
+    }
+
+    public List<RoomReservation> getRoomReservationsForDate(String dateString) {
+        Date date = createDateFromString(dateString);
+        return getRoomReservationsForDate(date);
     }
 
     public List<RoomReservation> getRoomReservationsForDate(Date date) {
@@ -55,6 +65,19 @@ public class ReservationService {
             roomReservations.add(roomReservationMap.get(roomId));
         }
         return roomReservations;
+    }
 
+    private Date createDateFromString(String dateString) {
+        Date date;
+        if(null != dateString) {
+            try {
+                date = DATE_FORMAT.parse(dateString);
+            } catch (ParseException e) {
+                date = new Date();
+            }
+        } else {
+            date = new Date();
+        }
+        return date;
     }
 }

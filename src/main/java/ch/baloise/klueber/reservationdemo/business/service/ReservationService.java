@@ -39,11 +39,11 @@ public class ReservationService {
         Map<Long, RoomReservation> roomReservationMap = new HashMap<>();
 
         rooms.forEach(room -> {
-            RoomReservation roomReservation = new RoomReservation();
-            roomReservation.setRoomId(room.getId());
-            roomReservation.setRoomName(room.getName());
-            roomReservation.setRoomNumber(room.getNumber());
-            roomReservationMap.put(room.getId(), roomReservation);
+            roomReservationMap.put(room.getId(),
+                    RoomReservation.builder()
+                        .roomId(room.getId())
+                        .roomName(room.getName())
+                        .roomNumber(room.getNumber()).build());
         });
 
         List<Reservation> reservations = reservationRepository.findByDate(new java.sql.Date(date.getTime()));

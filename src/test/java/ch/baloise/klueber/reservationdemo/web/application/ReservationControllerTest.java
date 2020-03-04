@@ -44,14 +44,15 @@ class ReservationControllerTest {
         Date date = DATE_FORMAT.parse("2017-01-01");
         List<RoomReservation> mockReservationList = new ArrayList<>();
 
-        RoomReservation mockRoomReservation = new RoomReservation();
-        mockRoomReservation.setLastName("Test");
-        mockRoomReservation.setFirstName("JUnit2");
-        mockRoomReservation.setDate(date);
-        mockRoomReservation.setGuestId(1);
-        mockRoomReservation.setRoomNumber("J1");
-        mockRoomReservation.setRoomId(100);
-        mockRoomReservation.setRoomName("Test Room");
+        RoomReservation mockRoomReservation = RoomReservation.builder()
+                .lastName("Test")
+                .firstName("JUnit2")
+                .date(date)
+                .guestId(1)
+                .roomNumber("J1")
+                .roomId(100)
+                .roomName("Test Room")
+                .build();
         mockReservationList.add(mockRoomReservation);
 
         given(reservationService.getRoomReservationsForDate(date)).willReturn(mockReservationList);
